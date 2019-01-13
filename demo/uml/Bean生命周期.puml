@@ -1,0 +1,45 @@
+@startuml
+start
+:通过Resource和ResourceLoader加载配置文件
+:创建ApplicationContext和BeanFactory;
+:启动容器;
+if (是否有添加BeanFactoryPostProcessor?) then (yes)
+  :调用BeanFactoryPostProcessor的
+  postProcessBeanFactory方法
+  对工厂定义信息进行后处理;
+endif
+:调用InstantiationAwareBeanPostProcessorAdapter的
+postProcessBeforeInstantiationf方法;
+:实例化Bean;
+:调用InstantiationAwareBeanPostProcessorAdapter的
+postProcessAfterInstantiation方法;
+:设置属性值;
+if (如果Bean有实现BeanNameAware接口?) then (yes)
+  :调用BeanNameAware的setBeanName方法;
+endif
+if (如果Bean有实现BeanFactoryAware接口?) then (yes)
+  :调用BeanFactoryAware的setBeanFactory方法;
+endif
+:调用BeanPostProcessor的
+postProcessBeforeInitialization方法;
+if (如果Bean有@PostConstruct注解方法?) then (yes)
+  :调用@PostConstruct注解的方法;
+endif
+if (如果Bean有实现InitializingBean接口?) then (yes)
+  :调用InitializingBean的afterPropertiesSet方法;
+endif
+:调用BeanPostProcessor的
+postProcessAfterInitialization方法;
+if (作用域) then
+  :singleton;
+  :Spring缓存池缓存准备就绪的Bean;
+  :容器销毁;
+  if (如果Bean有实现DisposableBean接口?) then (yes)
+    :调用DisposableBean的destroy方法;
+  endif
+else
+  :prototype;
+  :将准备就绪的Bean交给调用者;
+endif
+stop
+@enduml
