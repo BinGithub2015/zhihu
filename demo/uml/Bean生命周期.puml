@@ -11,9 +11,17 @@ endif
 :调用InstantiationAwareBeanPostProcessorAdapter的
 postProcessBeforeInstantiationf方法;
 :实例化Bean;
+note right
+    在finishBeanFactoryInitialization中
+    通过递归和反射实例化bean
+end note
 :调用InstantiationAwareBeanPostProcessorAdapter的
 postProcessAfterInstantiation方法;
 :设置属性值;
+note right
+    在finishBeanFactoryInitialization中
+    通过递归构建依赖关系
+end note
 if (如果Bean有实现BeanNameAware接口?) then (yes)
   :调用BeanNameAware的setBeanName方法;
 endif

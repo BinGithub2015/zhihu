@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.springboot;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
@@ -8,6 +8,10 @@ import javax.annotation.PreDestroy;
 
 @Component
 public class User implements InitializingBean {
+
+    public String sayHello(){
+        return "hello";
+    }
 
     @PostConstruct
     public void postConstruct(){
@@ -23,4 +27,5 @@ public class User implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         System.out.println("afterPropertiesSet");
     }
+
 }
