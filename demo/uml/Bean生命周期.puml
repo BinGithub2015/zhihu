@@ -6,16 +6,16 @@ start
 if (是否有添加BeanFactoryPostProcessor?) then (yes)
   :调用BeanFactoryPostProcessor的
   postProcessBeanFactory方法
-  对工厂定义信息进行后处理;
+  对工厂定义信息进行后处理;InstantiationAwareBeanPostProcessorAdapter
 endif
-:调用InstantiationAwareBeanPostProcessorAdapter的
-postProcessBeforeInstantiationf方法;
+:调用InstantiationAwareBeanPostProcessor的
+postProcessBeforeInstantiation方法;
 :实例化Bean;
 note right
     在finishBeanFactoryInitialization中
     通过递归和反射实例化bean
 end note
-:调用InstantiationAwareBeanPostProcessorAdapter的
+:调用InstantiationAwareBeanPostProcessor的
 postProcessAfterInstantiation方法;
 :设置属性值;
 note right

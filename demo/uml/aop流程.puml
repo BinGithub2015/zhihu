@@ -1,0 +1,12 @@
+@startuml
+start
+:AbstractApplicationContext#refresh;
+:AbstractApplicationContext#registerBeanPostProcessors注册所有bean后置处理器;
+:AbstractApplicationContext#onRefresh完成@AspectJ类初始化;
+:AbstractApplicationContext.finishBeanFactoryInitialization;
+:AbstractAutowireCapableBeanFactory#doCreateBean;
+:AbstractAutowireCapableBeanFactory#populateBean完成依赖注入;
+:AbstractAutowireCapableBeanFactory#initializeBean;
+:AbstractAutoProxyCreator#createProxy;
+stop
+@enduml
