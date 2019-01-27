@@ -8,5 +8,8 @@ start
 :AbstractAutowireCapableBeanFactory#populateBean完成依赖注入;
 :AbstractAutowireCapableBeanFactory#initializeBean;
 :AbstractAutoProxyCreator#createProxy;
+:ProxyFactory#getProxy;
+:DefaultAopProxyFactory#createAopProxy;
+:对应子类的AopProxy.getProxy;
 stop
 @enduml
